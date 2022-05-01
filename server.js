@@ -10,6 +10,5 @@ const server = app.listen(PORT, () => console.log(`Server Connected to port ${PO
 process.on('unhandledRejection', err => {
     console.error(`An error occured: ${err.message}`);
     server.close(() => process.exit(1));
-});
-
+}); //This code block is an error handler
 
