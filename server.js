@@ -5,6 +5,8 @@ const connectDB = require('./db'); //Require db.js file. Inherently exprects a .
 
 connectDB(); //Using db.js file
 
+app.use(express.json()); //Have application use express
+
 const server = app.listen(PORT, () => console.log(`Server Connected to port ${PORT}`));
 
 process.on('unhandledRejection', err => {
