@@ -31,6 +31,22 @@ exports.login = async(req, res, next) => {
         })
     }
     try {
-        
+        const user = await User.findOne({username, password});
+        if (!user) {
+            res.status(401).json({
+                message: "Login Unsuccessful",
+            })
+        } else {
+            res.status(200).json({
+                message: "Login Successful",
+                user,
+            })
+        }
+    }
+    catch (err) {
+        res.status(400).json({
+            message: "An error happened",
+            error: error.message,
+        })
     }
 }
