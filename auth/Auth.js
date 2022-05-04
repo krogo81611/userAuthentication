@@ -48,5 +48,5 @@ exports.login = async(req, res, next) => {
             message: "An error happened",
             error: error.message,
         })
-    }
+    } 
 }
