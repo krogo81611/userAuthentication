@@ -50,3 +50,16 @@ exports.login = async(req, res, next) => {
         })
     } 
 }
+
+exports.update = async (req, res, next) => {
+    const {role, id} = req.body;
+    if(role && id) {
+        if (role === "admin") {
+            await User.findById(id) 
+        } else {
+            res.status(400).json({
+                message: "User is not Admin"
+            })
+        }
+    }
+}
