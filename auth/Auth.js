@@ -61,5 +61,9 @@ exports.update = async (req, res, next) => {
                 message: "User is not Admin"
             })
         }
+    } else {
+        res.status(400).json({
+            message: "Role or ID is missing"
+        })
     }
 }
