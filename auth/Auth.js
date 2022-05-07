@@ -72,21 +72,21 @@ exports.update = async (req, res, next) => {
                             res.status("201").json({message: "Update Successful", user})
                         })
                     } else {
-                        res.status(400).json({message: "User is already an Admin"})
+                        res.status("400").json({message: "User is already an Admin"})
                     }
                 }) 
                 .catch((error) => {
                     res
-                    .status(400)
+                    .status("400")
                     .json({message: "An error happened", error: error.message})
                 })
         } else {
-            res.status(400).json({
+            res.status("400").json({
                 message: "User is not Admin"
             })
         }
     } else {
-        res.status(400).json({
+        res.status("400").json({
             message: "Role or ID is missing"
         })
     }
