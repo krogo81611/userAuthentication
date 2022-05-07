@@ -75,6 +75,11 @@ exports.update = async (req, res, next) => {
                         res.status(400).json({message: "User is already an Admin"})
                     }
                 }) 
+                .catch((error) => {
+                    res
+                    .status(400)
+                    .json({message: "An error happened", error: error.message})
+                })
         } else {
             res.status(400).json({
                 message: "User is not Admin"
