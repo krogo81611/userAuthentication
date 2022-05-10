@@ -23,7 +23,7 @@ exports.register = async (req, res, next) => {
             error: error.message,
         })
     }
-}
+} 
 
 exports.login = async(req, res, next) => {
     const {username, password} = req.body;
