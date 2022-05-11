@@ -49,7 +49,7 @@ exports.login = async(req, res, next) => {
         }
     }
     catch (err) {
-        res.status(400).json({
+        res.status(400).json({ 
             message: "An error happened",
             error: error.message,
         })
