@@ -55,15 +55,31 @@ exports.login = async(req, res, next) => {
         if (!user) {
             res.status(401).json({
                 message: "Login Unsuccessful",
-            })
+                error: "User not found"
+            });
         } else {
-            bcrypt.compare(password, user.password).then(function(result){
-            result ? res.status(200).json({
-                message: "Login Successful",
-                user,
-            }) 
-                : res.status(400).json({message: "Username or Password incorrect"})
-            })
+                bcrypt.compare(password, user.password).then(function (result) {
+                    if (result) {
+                        const maxAge = 3 * 60 * 60;
+                        const token = jwt.sign(
+                            { id: user._id, username, role: user.role },
+                            jwtSecret,
+                            {
+                                expiresIn: maxAge, // 3hrs in sec
+                            }
+                        );
+                        res.cookie("jwt", token, {
+                        httpOnly: true,
+                        maxAge: maxAge * 1000, // 3hrs in ms
+                        });
+                            res.status(201).json({
+                            message: "User successfully Logged in",
+                            user: user._id,
+                        });
+                    } else {
+                        res.status(400).json({message: "Login unsuccessful"})
+                    }      
+                });
         }
     }
     catch (err) {
