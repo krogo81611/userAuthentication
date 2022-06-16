@@ -3,6 +3,7 @@ const app = express();
 const PORT = 5500;
 const connectDB = require('./db'); //Require db.js file. Inherently exprects a .js file.
 const cookieParser = require('cookie-parser');
+const {adminAuth, userAuth} = require('./middleware/auth')
 
 connectDB(); //Using db.js file
 
