@@ -98,15 +98,15 @@ exports.update = async (req, res, next) => {
 }
 
 exports.deleteUser = async (req, res, next) => {
-    const {id} = req.body;
+    const { id } = req.body
     await User.findById(id)
-    .then(user => user.remove())
-    .then(user => 
-        res.status(201).json({message: "User Banished", user})
-    )
-    .catch(error => 
+      .then(user => user.remove())
+      .then(user =>
+        res.status(201).json({ message: "User Banished", user })
+      )
+      .catch(error =>
         res
-            .status(400)
-            .json({message: "An error occured", error: error.message})
-        )
-}
+          .status(400)
+          .json({ message: "An error occurred", error: error.message })
+      )
+  }
